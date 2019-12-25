@@ -1,2 +1,2 @@
-from .constant import __version__
+from .constants import __version__
 from .phishdetect import PhishDetect

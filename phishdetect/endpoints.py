@@ -1,8 +1,9 @@
 API_PATH = {
+    "config":                  "/api/config/",
     "indicators_add":          "/api/indicators/add/",
     "indicators_fetch":        "/api/indicators/fetch/",
     "indicators_fetch_recent": "/api/indicators/fetch/recent/",
-    "indicators_fetch_all":    "/api/indicators/fetch/all/"
+    "indicators_fetch_all":    "/api/indicators/fetch/all/",
     "indicators_details":      "/api/indicators/details/{ioc}/",
     "events_add":              "/api/events/add/",
     "events_fetch":            "/api/events/fetch/",
