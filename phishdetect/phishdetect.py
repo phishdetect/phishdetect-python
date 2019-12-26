@@ -24,7 +24,7 @@ class PhishDetect:
 
         self.events = models.Events(self)
         self.indicators = models.Indicators(self)
-        self.raw = models.Raw(self)
+        self.reports = models.Reports(self)
         self.users = models.Users(self)
 
     def request(self, method, path, data=None, json=None, files=None, params=None):
