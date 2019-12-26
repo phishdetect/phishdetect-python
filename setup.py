@@ -4,7 +4,7 @@
 # See the file 'LICENSE' for copying permission.
 
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 from phishdetect import __version__, __package_name__
 
@@ -37,7 +37,7 @@ setup(
     long_description=long_description,
 
     install_requires=requires,
-    packages=["phishdetect",],
+    packages=find_packages(),
     package_data=get_package_data("phishdetect"),
     include_package_data=True,
     keywords="security phishing phishdetect",
