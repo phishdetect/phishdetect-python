@@ -41,10 +41,10 @@ active = pd.users.get_active()
 pd.users.activate(api_key="user-api-key")
 pd.users.deactivate(api_key="user-api-key")
 
-# To download raw messages shared with the Node:
-messages = pd.raw.fetch(limit=10, offset=10)
-for entry in messages:
-	msg = pd.raw.details(uuid=entry["uuid"])
+# To download reports shared with the Node:
+reports = pd.reports.fetch(limit=10, offset=10, report_type="email")
+for entry in reports:
+	msg = pd.reports.details(uuid=entry["uuid"])
 ```
 
 For a complete reference, run:
