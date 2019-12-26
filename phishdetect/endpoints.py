@@ -8,7 +8,7 @@ API_PATH = {
     "indicators_fetch":        "/api/indicators/fetch/",
     "indicators_fetch_recent": "/api/indicators/fetch/recent/",
     "indicators_fetch_all":    "/api/indicators/fetch/all/",
-    "indicators_details":      "/api/indicators/details/{ioc}/",
+    "indicators_details":      "/api/indicators/details/{sha256}/",
     "events_add":              "/api/events/add/",
     "events_fetch":            "/api/events/fetch/",
     "reports_add":             "/api/reports/add/",

@@ -35,3 +35,9 @@ class Indicators(Model):
         This API should be avoided unless strictly necessary.
         """
         return self._phishdetect.get(API_PATH["indicators_fetch_all"])        
+
+    def details(self, sha256):
+        """Retrieve details on a given indicator (by hash).
+        :param sha256: SHA256 hash of the indicator.
+        """
+        return self._phishdetect.get(API_PATH["indicators_details"].format(sha256=sha256))

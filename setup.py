@@ -9,9 +9,9 @@ from setuptools import setup, find_packages
 from phishdetect import __version__, __package_name__
 
 description = "This is a Python3 library to easily interact with a PhishDetect Node API server"
-this_directory = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as handle:
-    long_description = handle.read()
+# this_directory = os.path.abspath(os.path.dirname(__file__))
+# with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as handle:
+#     long_description = handle.read()
 
 requires = (
     "requests",
@@ -34,8 +34,7 @@ setup(
     author="Claudio Guarnieri",
     author_email="nex@nex.sx",
     description=description,
-    long_description=long_description,
-
+    long_description=description,
     install_requires=requires,
     packages=find_packages(),
     package_data=get_package_data("phishdetect"),
