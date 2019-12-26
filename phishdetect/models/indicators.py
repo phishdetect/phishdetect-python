@@ -1,5 +1,5 @@
-from ..endpoints import API_PATH
 from .model import Model
+from ..endpoints import API_PATH
 
 class Indicators(Model):
 
