@@ -1,3 +1,7 @@
+# This file is part of phishdetect-python:
+# https://github.com/phishdetect/phishdetect-python
+# See the file 'LICENSE' for copying permission.
+
 API_PATH = {
     "config":                  "/api/config/",
     "indicators_add":          "/api/indicators/add/",

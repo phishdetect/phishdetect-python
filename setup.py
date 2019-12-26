@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# This file is part of phishdetect-python:
+# https://github.com/phishdetect/phishdetect-python
+# See the file 'LICENSE' for copying permission.
 
 import os
 from setuptools import setup

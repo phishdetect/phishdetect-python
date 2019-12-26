@@ -1,3 +1,7 @@
+# This file is part of phishdetect-python:
+# https://github.com/phishdetect/phishdetect-python
+# See the file 'LICENSE' for copying permission.
+
 from .model import Model
 from ..endpoints import API_PATH
 
