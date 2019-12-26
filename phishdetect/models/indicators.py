@@ -4,6 +4,11 @@ from ..endpoints import API_PATH
 class Indicators(Model):
 
     def add(self, indicators, indicators_type, tags=[]):
+        """Add new indicators to PhishDetect Node.
+        :param indicators: list of indicators, e.g. ["domain1.com", "domain2.com"].
+        :param indicators_type: the indicator format, e.g.: "domain" or "email".
+        :param tags: List of tags to assign to all these indicators.
+        """
         json = {
             "indicators": indicators,
             "type": indicators_type,
@@ -12,10 +17,17 @@ class Indicators(Model):
         return self._phishdetect.post(API_PATH["indicators_add"], json=json)
 
     def fetch(self):
+        """Fetch the default set of indicators (should be, from last 6 months.)
+        """
         return self._phishdetect.get(API_PATH["indicators_fetch"])
 
     def fetch_recent(self):
+        """Fetch only the indicators from the last 24 hours.
+        """
         return self._phishdetect.get(API_PATH["indicators_fetch_recent"])
 
     def fetch_all(self):
+        """Fetch all the indicators stored in the Node.
+        This API should be avoided unless strictly necessary.
+        """
         return self._phishdetect.get(API_PATH["indicators_fetch_all"])        
