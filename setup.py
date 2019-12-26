@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 from phishdetect import __version__, __package_name__
 
-description = "Python wrapper client"
+description = "This is a Python3 library to easily interact with a PhishDetect Node API server"
 this_directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as handle:
     long_description = handle.read()
