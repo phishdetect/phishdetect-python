@@ -20,12 +20,13 @@ class PhishDetect:
         self.host = host
         self.api_key = api_key
         self._session = requests.Session()
-        self._session.headers = {'User-Agent': USER_AGENT}
+        self._session.headers = {"User-Agent": USER_AGENT, "Connection": "close"}
 
         self.events = models.Events(self)
         self.indicators = models.Indicators(self)
         self.reports = models.Reports(self)
         self.users = models.Users(self)
+        self.analyze = models.Analyze(self)
 
     def request(self, method, path, data=None, json=None, files=None, params=None):
         """Return the json from the resource requested at ``path``.

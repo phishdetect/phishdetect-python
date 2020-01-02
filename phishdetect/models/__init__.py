@@ -6,3 +6,4 @@ from .events import Events
 from .indicators import Indicators
 from .reports import Reports
 from .users import Users
+from .analyze import Analyze

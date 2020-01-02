@@ -4,6 +4,9 @@
 
 API_PATH = {
     "config":                  "/api/config/",
+    "analyze_domain":          "/api/analyze/domain/",
+    "analyze_link":            "/api/analyze/link/",
+    "analyze_html":            "/api/analyze/html/",
     "indicators_add":          "/api/indicators/add/",
     "indicators_fetch":        "/api/indicators/fetch/",
     "indicators_fetch_recent": "/api/indicators/fetch/recent/",

@@ -45,6 +45,9 @@ pd.users.deactivate(api_key="user-api-key")
 reports = pd.reports.fetch(limit=10, offset=10, report_type="email")
 for entry in reports:
 	msg = pd.reports.details(uuid=entry["uuid"])
+
+# To analyze a link:
+results = pd.analyze.link(url="https://www.phishdetect.io")
 ```
 
 For a complete reference, run:
