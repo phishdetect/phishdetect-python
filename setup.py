@@ -6,14 +6,12 @@
 import os
 from setuptools import setup, find_packages
 
-from phishdetect import __version__, __package_name__
-
-description = "This is a Python3 library to easily interact with a PhishDetect Node API server"
-# this_directory = os.path.abspath(os.path.dirname(__file__))
-# with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as handle:
-#     long_description = handle.read()
+__package_name__ = "phishdetect"
+__version__ = "1.3"
+__description__ = "This is a Python3 library to easily interact with a PhishDetect Node API server"
 
 requires = (
+    "click",
     "requests",
 )
 
@@ -33,11 +31,12 @@ setup(
     version=__version__,
     author="Claudio Guarnieri",
     author_email="nex@nex.sx",
-    description=description,
-    long_description=description,
+    description=__description__,
+    long_description=__description__,
     install_requires=requires,
     packages=find_packages(),
     package_data=get_package_data("phishdetect"),
+    scripts=["bin/phishdetect-cli",],
     include_package_data=True,
     keywords="security phishing phishdetect",
     license="MIT",
