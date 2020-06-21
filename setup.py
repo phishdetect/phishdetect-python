@@ -8,7 +8,8 @@ from setuptools import setup, find_packages
 
 __package_name__ = "phishdetect"
 __version__ = "1.3"
-__description__ = "This is a Python3 library to easily interact with a PhishDetect Node API server"
+__description__ = "This is a Python3 library and CLI tool " \
+    "to easily interact with a PhishDetect Node API server"
 
 requires = (
     "click",
