@@ -7,7 +7,6 @@ from urllib.parse import urljoin
 
 from . import models
 from .endpoints import API_PATH
-from .constants import USER_AGENT
 
 class PhishDetect:
 
