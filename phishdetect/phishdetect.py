@@ -21,7 +21,7 @@ class PhishDetect:
         self._session = requests.Session()
         self._session.headers = {"User-Agent": "phishdetect-python", "Connection": "close"}
 
-        self.events = models.Events(self)
+        self.alerts = models.Alerts(self)
         self.indicators = models.Indicators(self)
         self.reports = models.Reports(self)
         self.users = models.Users(self)

@@ -5,10 +5,10 @@
 from .model import Model
 from ..endpoints import API_PATH
 
-class Events(Model):
+class Alerts(Model):
 
     def fetch(self, limit=0, offset=0):
-        """Fetch all events stored by PhishDetect Node.
+        """Fetch all alerts stored by PhishDetect Node.
         :param limit: Set an integer to use as limit of records to retrieve.
         :param offset: Set an integer to use as offset of records to retrieve.
         """
@@ -16,4 +16,4 @@ class Events(Model):
             "limit": limit,
             "offset": offset,
         }
-        return self._phishdetect.get(API_PATH["events_fetch"], params=params)
+        return self._phishdetect.get(API_PATH["alerts_fetch"], params=params)
