@@ -1,0 +1,163 @@
+#!/usr/bin/env python3
+# PhishDetect CLI
+# Copyright (c) 2020 Claudio Guarnieri.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+import json
+
+import click
+import phishdetect
+
+__node__ = None
+
+def convert_to_json(data):
+    return json.dumps(data, indent=4)
+
+@click.group(invoke_without_command=True)
+@click.option("--host", help="Address of your preferred PhishDetect Node")
+@click.option("--api-key", help="Your API key")
+@click.pass_context
+def main(ctx, host, api_key):
+    global __node__
+    __node__ = phishdetect.PhishDetect(host=host, api_key=api_key)
+
+
+@main.command("config")
+@click.pass_context
+def config(ctx):
+    print(convert_to_json(__node__.get_config()))
+
+
+#==============================================================================
+# Analyze
+#==============================================================================
+@main.group()
+@click.pass_context
+def analyze(ctx):
+    pass
+
+@analyze.command("domain")
+@click.argument("domain")
+@click.pass_context
+def domain(ctx, domain):
+    print(convert_to_json(__node__.analyze.domain(domain)))
+
+@analyze.command("link")
+@click.argument("url")
+@click.pass_context
+def link(ctx, url):
+    print(convert_to_json(__node__.analyze.link(url)))
+
+
+#==============================================================================
+# Admin
+#==============================================================================
+@main.group()
+@click.pass_context
+def admin(ctx):
+    pass
+
+
+#==============================================================================
+# Indicators
+#==============================================================================
+@admin.group()
+@click.pass_context
+def indicators(ctx):
+    pass
+
+@indicators.command("add")
+@click.option("--file-path", type=click.Path(exists=True))
+@click.option("--tags")
+@click.pass_context
+def indicators_add(ctx, file_path, tags=[]):
+    with open(file_path, "r") as handle:
+        iocs = []
+        for line in handle:
+            line = line.strip().lower()
+            if line not in iocs:
+                iocs.append(line)
+
+    print(convert_to_json(__node__.indicators.add(iocs, "domain", tags)))
+
+
+#==============================================================================
+# Events
+#==============================================================================
+@admin.group()
+@click.pass_context
+def alerts(ctx):
+    pass
+
+@alerts.command("fetch")
+@click.option("--limit", type=int, default=10)
+@click.option("--offset", type=int, default=0)
+@click.pass_context
+def alerts_fetch(ctx, limit, offset):
+    print(convert_to_json(__node__.alerts.fetch(limit=limit, offset=offset)))
+
+
+#==============================================================================
+# Users
+#==============================================================================
+@admin.group()
+@click.pass_context
+def users(ctx):
+    pass
+
+@users.command("get-pending")
+@click.pass_context
+def users_pending(ctx):
+    print(convert_to_json(__node__.users.get_pending()))
+
+@users.command("get-active")
+@click.pass_context
+def users_active(ctx):
+    print(convert_to_json(__node__.users.get_active()))
+
+@users.command("activate")
+@click.option("--api-key", required=True)
+@click.pass_context
+def users_activate(ctx, api_key):
+    print(convert_to_json(__node__.users.activate(api_key)))
+
+@users.command("deactivate")
+@click.option("--api-key", required=True)
+@click.pass_context
+def users_deactivate(ctx, api_key):
+    print(convert_to_json(__node__.users.deactivate(api_key)))
+
+
+#==============================================================================
+# Reports
+#==============================================================================
+@admin.group()
+@click.pass_context
+def reports(ctx):
+    pass
+
+@reports.command("fetch")
+@click.option("--limit", type=int, default=10)
+@click.option("--offset", type=int, default=0)
+@click.option("--report-type", type=click.Choice(["url", "email"], case_sensitive=False))
+@click.pass_context
+def reports_fetch(ctx, limit, offset, report_type):
+    report_type = report_type.lower()
+    print(convert_to_json(__node__.reports.fetch(limit=limit,
+        offset=offset, report_type=report_type)))
+
+
+if __name__ == "__main__":
+    main()
