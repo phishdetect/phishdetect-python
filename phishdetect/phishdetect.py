@@ -31,7 +31,7 @@ class PhishDetect:
         """Return the json from the resource requested at ``path``.
         :param method: HTTP method (mainly GET or POST).
         :param path: The path to the resource. This will be combined to the host
-            specified at creation.
+                     specified at creation.
         :param json: Any JSON encoded data to send with the request.
         :param data: Any data to send as body of the request.
         :param files: Files to upload.
@@ -58,7 +58,7 @@ class PhishDetect:
     def post(self, path, data=None, json=None, files=None, params=None):
         """Send a POST request and return the JSON response.
         :param path: The path to the resource. This will be combined to the host
-            specified at creation.
+                     specified at creation.
         :param json: Any JSON encoded data to send with the request.
         :param data: Any data to send as body of the request.
         :param files: Files to upload.
