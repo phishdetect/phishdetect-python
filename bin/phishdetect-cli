@@ -25,6 +25,10 @@ __node__ = None
 def convert_to_json(data):
     return json.dumps(data, indent=4)
 
+
+#==============================================================================
+# Base
+#==============================================================================
 @click.group(invoke_without_command=True)
 @click.option("--host", help="Address of your preferred PhishDetect Node")
 @click.option("--api-key", help="Your API key")
@@ -79,22 +83,35 @@ def indicators(ctx):
     pass
 
 @indicators.command("add")
-@click.option("--file-path", type=click.Path(exists=True))
-@click.option("--tags")
+@click.option("--single", type=str)
+@click.option("--file-path", type=click.Path(exists=True),)
+@click.option("--tags", type=str)
 @click.pass_context
-def indicators_add(ctx, file_path, tags=[]):
-    with open(file_path, "r") as handle:
-        iocs = []
-        for line in handle:
-            line = line.strip().lower()
-            if line not in iocs:
-                iocs.append(line)
+def indicators_add(ctx, single=None, file_path=None, tags=None):
+    if single and file_path:
+        raise click.UsageError("Illegal usage: --single and --file-path are "
+                               "mutually exclusive.")
+
+    if tags:
+        tags = [tag.lower().strip() for tag in tags.split(",")]
+    else:
+        tags = []
+
+    if single:
+        iocs = [single.lower().strip(),]
+    elif file_path:
+        with open(file_path, "r") as handle:
+            iocs = []
+            for line in handle:
+                line = line.lower().strip()
+                if line not in iocs:
+                    iocs.append(line)
 
     print(convert_to_json(__node__.indicators.add(iocs, "domain", tags)))
 
 
 #==============================================================================
-# Events
+# Alerts
 #==============================================================================
 @admin.group()
 @click.pass_context
@@ -151,7 +168,8 @@ def reports(ctx):
 @reports.command("fetch")
 @click.option("--limit", type=int, default=10)
 @click.option("--offset", type=int, default=0)
-@click.option("--report-type", type=click.Choice(["url", "email"], case_sensitive=False))
+@click.option("--report-type", type=click.Choice(["url", "email"],
+              case_sensitive=False), required=True)
 @click.pass_context
 def reports_fetch(ctx, limit, offset, report_type):
     report_type = report_type.lower()
