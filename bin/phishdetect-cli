@@ -83,22 +83,22 @@ def indicators(ctx):
     pass
 
 @indicators.command("add")
-@click.option("--single", type=str)
+@click.option("--single", "-s", multiple=True, metavar="INDICATOR")
 @click.option("--file-path", type=click.Path(exists=True),)
-@click.option("--tags", type=str)
+@click.option("--tag", "-t", multiple=True, metavar="TAG")
 @click.pass_context
-def indicators_add(ctx, single=None, file_path=None, tags=None):
+def indicators_add(ctx, single=None, file_path=None, tag=None):
     if single and file_path:
         raise click.UsageError("Illegal usage: --single and --file-path are "
                                "mutually exclusive.")
 
-    if tags:
-        tags = [tag.lower().strip() for tag in tags.split(",")]
+    if tag:
+        tags = [t.lower().strip() for t in tag]
     else:
         tags = []
 
     if single:
-        iocs = [single.lower().strip(),]
+        iocs = [s.lower().strip() for s in single]
     elif file_path:
         with open(file_path, "r") as handle:
             iocs = []
