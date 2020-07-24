@@ -107,7 +107,7 @@ def indicators_add(ctx, single=None, file_path=None, tag=None):
                 if line not in iocs:
                     iocs.append(line)
 
-    print(convert_to_json(__node__.indicators.add(iocs, "domain", tags)))
+    print(convert_to_json(__node__.indicators.add(iocs, tags)))
 
 
 #==============================================================================
