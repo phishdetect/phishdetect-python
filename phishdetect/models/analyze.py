@@ -15,6 +15,12 @@ class Analyze(Model):
         """
         return self._phishdetect.post(API_PATH["analyze_domain"], json={"url": domain})
 
+    def url(self, url):
+        """Request the PhishDetect Node to statically analyze a URL.
+        :param url: URL to analyze.
+        """
+        return self._phishdetect.post(API_PATH["analyze_url"], json={"url": url})
+
     def link(self, url):
         """Request the PhishDetect Node to dynamically analyze a URL.
         :param url: URL to analyze.
