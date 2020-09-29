@@ -7,7 +7,7 @@ from ..endpoints import API_PATH
 
 class Indicators(Model):
 
-    def add(self, indicators, tags=[]):
+    def add(self, indicators, tags=[], enabled=True):
         """Add new indicators to PhishDetect Node.
         :param indicators: list of indicators, e.g. ["domain1.com", "domain2.com"].
         :param tags: List of tags to assign to all these indicators.
@@ -15,6 +15,7 @@ class Indicators(Model):
         json = {
             "indicators": indicators,
             "tags": tags,
+            "enabled": enabled,
         }
         return self._phishdetect.post(API_PATH["indicators_add"], json=json)
 
