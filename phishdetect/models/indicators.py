@@ -9,7 +9,7 @@ class Indicators(Model):
 
     def add(self, indicators, tags=[], enabled=True):
         """Add new indicators to PhishDetect Node.
-        :param indicators: list of indicators, e.g. ["domain1.com", "domain2.com"].
+        :param indicators: List of indicators, e.g. ["domain1.com", "domain2.com"].
         :param tags: List of tags to assign to all these indicators.
         """
         json = {
@@ -35,13 +35,19 @@ class Indicators(Model):
         """
         return self._phishdetect.get(API_PATH["indicators_fetch_all"])        
 
-    def disabled(self):
-        """Fetch all the indicators that are marked as disabled.
-        """
-        return self._phishdetect.get(API_PATH["indicators_disabled"])
-
     def details(self, sha256):
         """Retrieve details on a given indicator (by hash).
         :param sha256: SHA256 hash of the indicator.
         """
         return self._phishdetect.get(API_PATH["indicators_details"].format(sha256=sha256))
+
+    def disabled(self):
+        """Fetch all the indicators that are marked as disabled.
+        """
+        return self._phishdetect.get(API_PATH["indicators_disabled"])
+
+    def toggle(self, indicators):
+        """Send update of indicators to PhishDetect Node.
+        :param indicators: List of hashed indicators in SHA256 format.
+        """
+        return self._phishdetect.post(API_PATH["indicators_toggle"], json=indicators)
