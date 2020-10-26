@@ -7,7 +7,7 @@ import os
 from setuptools import setup, find_packages
 
 __package_name__ = "phishdetect"
-__version__ = "1.7.2"
+__version__ = "1.8"
 __description__ = "This is a Python3 library and CLI tool " \
     "to easily interact with a PhishDetect Node API server"
 
