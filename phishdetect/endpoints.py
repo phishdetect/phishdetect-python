@@ -22,6 +22,6 @@ API_PATH = {
     "reports_details":         "/api/reports/details/{uuid}/",
     "users_pending":           "/api/users/pending/",
     "users_active":            "/api/users/active/",
-    "users_activate":          "/api/users/activate/{api_key}/",
-    "users_deactivate":        "/api/users/deactivate/{api_key}/",
+    "users_activate":          "/api/users/activate/{uuid}/",
+    "users_deactivate":        "/api/users/deactivate/{uuid}/",
 }

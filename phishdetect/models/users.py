@@ -17,14 +17,14 @@ class Users(Model):
         """
         return self._phishdetect.get(API_PATH["users_active"])
 
-    def activate(self, api_key):
+    def activate(self, uuid):
         """Activate pending user.
-        :param api_key: API key used to identify the user to activate.
+        :param uuid: UUID of the user to activate.
         """
-        return self._phishdetect.get(API_PATH["users_activate"].format(api_key=api_key))
+        return self._phishdetect.get(API_PATH["users_activate"].format(uuid=uuid))
 
-    def deactivate(self, api_key):
+    def deactivate(self, uuid):
         """Deactivate existing user.
-        :param api_key: API key used to identify the user to deactivate.
+        :param uuid: UUID of the user to deactivate.
         """
-        return self._phishdetect.get(API_PATH["users_deactivate"].format(api_key=api_key))
+        return self._phishdetect.get(API_PATH["users_deactivate"].format(uuid=uuid))
