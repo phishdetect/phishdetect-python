@@ -41,7 +41,12 @@ class Indicators(Model):
         """
         return self._phishdetect.get(API_PATH["indicators_details"].format(sha256=sha256))
 
-    def disabled(self):
+    def get_pending(self):
+        """Fetch all the indicators that are marked as pending.
+        """
+        return self._phishdetect.get(API_PATH["indicators_pending"])
+
+    def get_disabled(self):
         """Fetch all the indicators that are marked as disabled.
         """
         return self._phishdetect.get(API_PATH["indicators_disabled"])

@@ -13,6 +13,7 @@ API_PATH = {
     "indicators_fetch_recent": "/api/indicators/fetch/recent/",
     "indicators_fetch_all":    "/api/indicators/fetch/all/",
     "indicators_details":      "/api/indicators/details/{sha256}/",
+    "indicators_pending":      "/api/indicators/pending/",
     "indicators_disabled":     "/api/indicators/disabled/",
     "indicators_toggle":       "/api/indicators/toggle/",
     "alerts_add":              "/api/alerts/add/",
