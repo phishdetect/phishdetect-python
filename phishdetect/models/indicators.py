@@ -51,8 +51,14 @@ class Indicators(Model):
         """
         return self._phishdetect.get(API_PATH["indicators_disabled"])
 
-    def toggle(self, indicators):
-        """Send update of indicators to PhishDetect Node.
+    def enable(self, indicators):
+        """Set status of provided indicators to "enabled".
         :param indicators: List of hashed indicators in SHA256 format.
         """
-        return self._phishdetect.post(API_PATH["indicators_toggle"], json=indicators)
+        return self._phishdetect.post(API_PATH["indicators_enable"], json=indicators)
+
+    def disable(self, indicators):
+        """Set status of provided indicators to "disabled".
+        :param indicators: List of hashed indicators in SHA256 format.
+        """
+        return self._phishdetect.post(API_PATH["indicators_disable"], json=indicators)
