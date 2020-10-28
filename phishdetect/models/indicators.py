@@ -7,15 +7,23 @@ from ..endpoints import API_PATH
 
 class Indicators(Model):
 
-    def add(self, indicators, tags=[], enabled=True):
+    def add(self, indicators, tags=[], enabled=True, indicators_type=None):
         """Add new indicators to PhishDetect Node.
         :param indicators: List of indicators, e.g. ["domain1.com", "domain2.com"].
         :param tags: List of tags to assign to all these indicators.
+        :param enabled: Boolean flag indicating if the indicators should be
+                        marked as enabled.
+        :param indicators_type: String value to explicitly specify the type of
+                                indicators submitted. This is typically used
+                                only if you are submitting indicators that are
+                                already in hashed form, for which the Node can
+                                not automatically detect a type.
         """
         json = {
             "indicators": indicators,
             "tags": tags,
             "enabled": enabled,
+            "type": indicators_type,
         }
         return self._phishdetect.post(API_PATH["indicators_add"], json=json)
 
