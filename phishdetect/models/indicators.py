@@ -79,6 +79,7 @@ class Indicators(Model):
             pd = phishdetect.PhishDetect(host="https://your-server.com",
                                          api_key="your-api-key")
             iocs = pd.indicators.fetch_recent()
+            ```
         """
         return self._phishdetect.get(API_PATH["indicators_fetch_recent"])
 
