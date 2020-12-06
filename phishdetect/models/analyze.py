@@ -73,7 +73,7 @@ class Analyze(Model):
 
         Args:
             url (str): URL of the HTML page.
-            html (str): HTML of the page to analyze.
+            html (str or bytes): HTML of the page to analyze.
 
         Returns:
             The parsed JSON response from the REST API request.
@@ -87,8 +87,11 @@ class Analyze(Model):
                                       html="<html><head></head><body>Bad website!</body></html>")
             ```
         """
+        if html is str:
+            html = html.encode()
+
         json = {
             "url": url,
-            "html": b64encode(html.encode()).decode(),
+            "html": b64encode(html).decode(),
         }
         return self._phishdetect.post(API_PATH["analyze_html"], json=json)
