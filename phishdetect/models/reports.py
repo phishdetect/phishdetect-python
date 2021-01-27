@@ -4,6 +4,7 @@
 
 from .model import Model
 from ..endpoints import API_PATH
+from ..validate import validate_uuid
 
 class Reports(Model):
 
@@ -52,4 +53,6 @@ class Reports(Model):
                 details = pd.reports.details(report["uuid"])
             ```
         """
+        validate_uuid(uuid)
+
         return self._phishdetect.get(API_PATH["reports_details"].format(uuid=uuid))

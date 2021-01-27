@@ -4,6 +4,7 @@
 
 from .model import Model
 from ..endpoints import API_PATH
+from ..validate import validate_sha256
 
 class Indicators(Model):
 
@@ -118,6 +119,8 @@ class Indicators(Model):
             details = pd.indicators.details(sha256="3a2868d359962f226187048c8f7cbf42a5df3dddcd33746f6eb874a660a84bb6")
             ```
         """
+        validate_sha256(sha256)
+
         return self._phishdetect.get(API_PATH["indicators_details"].format(sha256=sha256))
 
     def get_pending(self):
