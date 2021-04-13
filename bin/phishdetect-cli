@@ -29,7 +29,7 @@ def convert_to_json(data):
 #==============================================================================
 # Base
 #==============================================================================
-@click.group(invoke_without_command=True)
+@click.group(invoke_without_command=False)
 @click.option("--host", help="Address of your preferred PhishDetect Node")
 @click.option("--api-key", help="Your API key")
 @click.pass_context
