@@ -3,7 +3,7 @@
 # See the file 'LICENSE' for copying permission.
 
 from .alerts import Alerts
+from .analyze import Analyze
 from .indicators import Indicators
 from .reports import Reports
 from .users import Users
-from .analyze import Analyze

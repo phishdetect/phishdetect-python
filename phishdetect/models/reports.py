@@ -2,9 +2,10 @@
 # https://github.com/phishdetect/phishdetect-python
 # See the file 'LICENSE' for copying permission.
 
-from .model import Model
 from ..endpoints import API_PATH
 from ..validate import validate_uuid
+from .model import Model
+
 
 class Reports(Model):
 

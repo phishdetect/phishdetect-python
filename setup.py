@@ -4,7 +4,8 @@
 # See the file 'LICENSE' for copying permission.
 
 import os
-from setuptools import setup, find_packages
+
+from setuptools import find_packages, setup
 
 __package_name__ = "phishdetect"
 __version__ = "1.10.0"

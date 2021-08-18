@@ -4,8 +4,9 @@
 
 from base64 import b64encode
 
-from .model import Model
 from ..endpoints import API_PATH
+from .model import Model
+
 
 class Analyze(Model):
 

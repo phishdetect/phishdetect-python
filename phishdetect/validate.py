@@ -4,6 +4,7 @@
 
 import re
 
+
 class InvalidParameter(Exception):
     pass
 

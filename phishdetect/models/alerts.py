@@ -2,8 +2,9 @@
 # https://github.com/phishdetect/phishdetect-python
 # See the file 'LICENSE' for copying permission.
 
-from .model import Model
 from ..endpoints import API_PATH
+from .model import Model
+
 
 class Alerts(Model):
 
